@@ -1,10 +1,10 @@
 possible_target(IX,IY,FX,FY) :- number(IX,IY,_), area(FX,FY,_), IX = FX.
 
 possible_target(IX,IY,FX,FY) :- number(IX,IY,_), area(FX,FY,_), IY = FY.
-% achieved: any (FX,FY) is reachable from any (IX,IY)
+% achieved: ensure that any (FX,FY) is reachable from any (IX,IY), avoid non cardinal movement
 
 1 { target(IX,IY,FX,FY) : possible_target(IX,IY,FX,FY) } 1 :- number(IX,IY,_).
-% achieved: every (IX,IY) only gets assigned to one (FX,FY)
+% achieved: ensure every (IX,IY) only gets assigned to one (FX,FY), cannot have a number go multiple places
 
 covered(A) :- target(_,_,FX,FY), area(FX,FY,A).
 
